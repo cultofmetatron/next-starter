@@ -4,9 +4,14 @@ const { parse } = require('url')
 const dev = process.env.NODE_ENV !== 'production';''
 const mainApp = next({ dev });
 const handle = mainApp.getRequestHandler();
+
+const serverRoutes = reuqire('./server');
+
 mainApp.prepare()
 .then(() => {
   const server = express();
+
+  serverRoutes(mainApp, server);
 
   server.get('*', (req, res) => {
     return handle(req, res)
