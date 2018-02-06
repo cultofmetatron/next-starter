@@ -4,8 +4,11 @@ const { parse } = require('url')
 const dev = process.env.NODE_ENV !== 'production';''
 const mainApp = next({ dev });
 const handle = mainApp.getRequestHandler();
-
-const serverRoutes = reuqire('./server');
+const routes = require('./routes');
+const serverRoutes = require('./server/index.js');
+if (process.env.ENV !== 'production') {
+  require('dotenv').config();
+}
 
 mainApp.prepare()
 .then(() => {

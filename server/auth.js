@@ -1,13 +1,14 @@
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 
-const routes = (server) = {
+const routes = (router) => {
 // Configure Passport to use Auth0
+  console.log('passprt', process.env);
   const strategy = new Auth0Strategy(
     {
-      domain: process.env.AUTH0_DOMAN,
+      domain: process.env.AUTH0_DOMAIN,
       clientID: process.env.AUTH0_CLIENT_ID,
-      clientSecret: process.env.AUTH0_SECRET,
+      clientSecret: process.env.AUTH0_CLIENT_SECRET,
       callbackURL: process.env.AUTH0_CALLBACK_URL
     },
     (accessToken, refreshToken, extraParams, profile, done) => {
@@ -27,7 +28,45 @@ const routes = (server) = {
   });
 
   // ...
-  server.use(passport.initialize());
-  server.use(passport.session());
+  router.use(passport.initialize());
+  router.use(passport.session());
+
+
+  const authHandler = (req, res) => {
+    res.redirect('/');
+  }
+
+  const env = process.env;
+  console.log('env 2', env)
+  // Perform the login
+  router.get(
+    '/session/new',
+    passport.authenticate('auth0', {
+      clientID: env.AUTH0_CLIENT_ID,
+      domain: env.AUTH0_DOMAIN,
+      redirectUri: env.AUTH0_CALLBACK_URL,
+      audience: `https://${process.env.AUTH0_DOMAIN}/userinfo`,
+      responseType: 'code',
+      scope: 'openid'
+    }),
+    authHandler
+  );
+
+  router.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+  });
+
+  router.get(
+    '/auth/callback',
+    passport.authenticate('auth0', {
+      failureRedirect: '/'
+    }),
+    function(req, res) {
+      res.redirect(req.session.returnTo || '/dashboard');
+    }
+  );
 
 }
+
+module.exports = routes;
