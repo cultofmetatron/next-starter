@@ -4,7 +4,7 @@
 
  nextjs starter. includes auth0, redux, sagas and material-ui
  
- * [*] redux
- * [*] auth0 login
+ * [x] redux
+ * [x] auth0 login
  * [ ] material-ui
  * [ ] macros for automating action creation
