@@ -15,7 +15,7 @@ const Index = (props) => {
 
   return (
     <div>
-      <span>hello world {props.count}</span>
+      <span>hello world {props.counter.count}</span>
       <a href="" onClick={increment} > ++ </a> |
       <a href="" onClick={decrement} > -- </a> 
     </div>
@@ -24,6 +24,6 @@ const Index = (props) => {
 
 export default wrapRedux(Index, (state) => {
   return {
-    count: state.counter.count
+    counter: state.counter
   };
 });
