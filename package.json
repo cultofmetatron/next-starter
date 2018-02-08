@@ -23,6 +23,7 @@
     "redux": "^3.7.2"
   },
   "devDependencies": {
-    "babel-plugin-transform-decorators": "^6.24.1"
+    "babel-plugin-transform-decorators": "^6.24.1",
+    "jshint": "^2.9.5"
   }
 }

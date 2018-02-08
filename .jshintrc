@@ -1,0 +1,21 @@
+{
+  "maxerr"        : 50,  
+  "camelcase"     : false,
+  "eqeqeq"        : true,
+  "undef"         : true,
+  "unused"        : true,
+  "strict"        : "implied",
+  "asi"           : false,
+  "boss"          : false,
+  "debug"         : true,
+  "eqnull"        : false,
+  "esversion"     : 6,
+  "browser"       : true,
+  "quotmark"      : "single",
+  "globals"       : {
+    "require": false,
+    "window": false,
+    "process": false,
+    "module": true
+  }
+}
