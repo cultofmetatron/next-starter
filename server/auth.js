@@ -38,7 +38,7 @@ const routes = (router) => {
   const env = process.env;
   // Perform the login
   router.get(
-    '/session/new',
+    '/login',
     passport.authenticate('auth0', {
       clientID: env.AUTH0_CLIENT_ID,
       domain: env.AUTH0_DOMAIN,

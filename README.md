@@ -6,5 +6,18 @@
  
  * [x] redux
  * [x] auth0 login
+ * [x] sagas
+ * [ ] login middleware
+ * [ ] 
  * [ ] material-ui
- * [ ] macros for automating action creation
+
+ # Setup
+
+ clone the repo and create .env file
+
+```
+AUTH0_DOMAIN="next-starter.auth0.com"
+AUTH0_CLIENT_ID="{client_id}"
+AUTH0_CLIENT_SECRET="{client_secret}"
+AUTH0_CALLBACK_URL="http://127.0.0.1:3000/auth/callback
+```
