@@ -1,7 +1,13 @@
 
-import React from 'react'
+import React from 'react';
 import wrapRedux from '../wrap-redux';
 import { incrementAction, decrementAction } from '../states/counter';
+
+const wrapper = wrapRedux((state) => {
+  return {
+    counter: state.counter
+  };
+});
 
 const Index = (props) => {
 
@@ -10,7 +16,7 @@ const Index = (props) => {
     props.dispatch(incrementAction({amount: 1}));
   }
   const decrement = (ev) => {
-    ev.preventDefault()
+    ev.preventDefault();
     props.dispatch(decrementAction({amount: 1}));
   }
 
@@ -23,8 +29,4 @@ const Index = (props) => {
   );
 }
 
-export default wrapRedux(Index, (state) => {
-  return {
-    counter: state.counter
-  };
-});
+export default wrapper(Index);
