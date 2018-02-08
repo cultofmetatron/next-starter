@@ -1,4 +1,5 @@
 
+import React from 'react'
 import wrapRedux from '../wrap-redux';
 import { incrementAction, decrementAction } from '../states/counter';
 

@@ -3,7 +3,6 @@ const Auth0Strategy = require('passport-auth0');
 
 const routes = (router) => {
 // Configure Passport to use Auth0
-  console.log('passprt', process.env);
   const strategy = new Auth0Strategy(
     {
       domain: process.env.AUTH0_DOMAIN,
@@ -37,7 +36,6 @@ const routes = (router) => {
   }
 
   const env = process.env;
-  console.log('env 2', env)
   // Perform the login
   router.get(
     '/session/new',
