@@ -30,11 +30,7 @@ const Index = (props) => {
   );
 }
 */
-@wrapRedux((state) => {
-  return {
-    counter: state.counter
-  };
-})
+
 class Index extends React.Component {
   increment = (ev) => {
     ev.preventDefault();
