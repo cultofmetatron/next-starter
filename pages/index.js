@@ -9,27 +9,6 @@ const wrapper = wrapRedux((state) => {
   };
 });
 
-/*
-const Index = (props) => {
-
-  const increment = (ev) => {
-    ev.preventDefault();
-    props.dispatch(incrementAction({amount: 1}));
-  }
-  const decrement = (ev) => {
-    ev.preventDefault();
-    props.dispatch(decrementAction({amount: 1}));
-  }
-
-  return (
-    <div>
-      <span>hello world {props.counter.count}</span>
-      <a href="" onClick={increment} > ++ </a> |
-      <a href="" onClick={decrement} > -- </a> 
-    </div>
-  );
-}
-*/
 
 class Index extends React.Component {
   increment = (ev) => {
