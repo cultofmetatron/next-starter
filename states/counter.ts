@@ -1,35 +1,30 @@
 
-import { createAction, createResponder, runResponders } from './util';
+import { createAction, createResponder, runResponders, actionI, actionDispatcherI } from './util';
 import { Map } from 'immutable'
+
 const initialState = Map({
   count: 0
 });
 
 let responders = [];
 
-const incrementAction = createAction('Counter:Increment');
-const incrementResponder = createResponder(incrementAction, (state, action) => {
+interface amountI extends actionI {
+  args: {
+    amount: Number;
+  };
+}
+
+const incrementAction: actionDispatcherI = createAction('Counter:Increment');
+const incrementResponder = createResponder(incrementAction, (state, action: amountI) => {
   const { amount } = action.args;
-  /*
-  return {
-    ...state,
-    count: state.count + (amount || 1)
-  }
-  */
   return state.set('count', state.get('count') + (amount || 1));
 
 });
 responders.push(incrementResponder);
 
-const decrementAction = createAction('Counter:Decrement');
-const decrementResponder = createResponder(decrementAction, (state, action) => {
+const decrementAction: actionDispatcherI = createAction('Counter:Decrement');
+const decrementResponder = createResponder(decrementAction, (state, action: amountI) => {
   const { amount } = action.args;
-  /*
-  return {
-    ...state,
-    count: state.count - (amount || 1)
-  }
-  */
   return state.set('count', state.get('count') - (amount || 1));
 });
 responders.push(decrementResponder);
