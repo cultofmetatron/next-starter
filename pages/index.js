@@ -4,8 +4,9 @@ import wrapRedux from '../wrap-redux';
 import { incrementAction, decrementAction } from '../states/counter';
 
 const wrapper = wrapRedux((state) => {
+
   return {
-    counter: state.counter
+    counter: state.counter.toJS()
   };
 });
 

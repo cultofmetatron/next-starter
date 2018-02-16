@@ -6,6 +6,7 @@ import reducer from './states';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas';
 import withReduxSaga from 'next-redux-saga';
+import Immutable from 'immutable';
 
 const wrapRedux = (getProps) => {
   return (component) => {
@@ -15,11 +16,17 @@ const wrapRedux = (getProps) => {
 
     const sagaMiddleware = createSagaMiddleware(rootSaga)
 
-    const makeStore = (initialState, options) => {
+    const makeStore = (initialState = {}, options) => {
+      // Nasty duck typing, you should find a better way to detect
+      for (let key in initialState) {
+        if (!initialState[key].toJS) 
+          initialState[key] = Immutable.fromJS(initialState[key]);
+      }
+
       let store = createStore(
         reducer,
         initialState,
-        applyMiddleware(sagaMiddleware)
+       applyMiddleware(sagaMiddleware)
       );
       store.runSagaTask = () => {
         store.sagaTask = sagaMiddleware.run(rootSaga)
