@@ -10,3 +10,5 @@ const Session = (props) => {
     </div>
   )  
 }
+
+export default Session;
